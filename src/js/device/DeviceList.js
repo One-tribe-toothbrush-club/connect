@@ -322,11 +322,12 @@ export default class DeviceList extends EventEmitter {
     }
 
     onBeforeUnload(clearSession?: ?boolean) {
-        if (this.stream !== null) {
+        if (this.stream) {
             this.stream.stop();
         }
 
         this.allDevices().forEach(device => device.onBeforeUnload());
+        this.removeAllListeners();
     }
 
     disconnectDevices() {
