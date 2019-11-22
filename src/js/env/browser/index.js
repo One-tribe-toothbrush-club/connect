@@ -135,6 +135,7 @@ export const init = async (settings: Object = {}): Promise<void> => {
         throw ERROR.BROWSER_NOT_SUPPORTED;
     }
 
+    _log.enabled = _settings.debug;
     if (_settings.lazyLoad) {
         // reset "lazyLoad" after first use
         _settings.lazyLoad = false;
@@ -144,8 +145,6 @@ export const init = async (settings: Object = {}): Promise<void> => {
     if (!_popupManager) {
         _popupManager = initPopupManager();
     }
-
-    _log.enabled = _settings.debug;
 
     window.addEventListener('message', handleMessage);
     window.addEventListener('beforeunload', dispose);
